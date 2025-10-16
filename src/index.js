@@ -2,9 +2,12 @@ const express = require('express');
 const routes = require('./routes/routesUsuario.js');
 const manipulador404 = require('./Error/Manipulador404.js');
 const ManipuladorDeErros = require('./midleware/ManipuladorDeErros.js');
+const cors = require('cors');
 
 // Inicializa o app
 const app = express();
+
+app.use(cors({ origin: 'http://localhost:5173' })); // ajuste a origem do seu React
 
 app.use(express.json());
 
