@@ -1,8 +1,9 @@
 const { ValidationError, UniqueConstraintError } = require('sequelize');
-const ErroBase = require('../Error/ErroBase.js');
-const RequisicaoIncorreta = require('../Error/RequisicaoIncorreta.js');
-const ErroValidacao = require('../Error/ErroValidacao.js');
-const NaoEncontrado = require('../Error/NaoEncontrado.js');
+const ErroBase = require('../database/Error/ErroBase.js');
+const RequisicaoIncorreta = require('../database/Error/RequisicaoIncorreta.js');
+const ErroValidacao = require('../database/Error/ErroValidacao.js');
+const NaoEncontrado = require('../database/Error/NaoEncontrado.js');
+
 
 // eslint-disable-next-line no-unused-vars
 function ManipuladorDeErros(erro, req, res, next) {

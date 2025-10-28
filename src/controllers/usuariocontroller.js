@@ -70,11 +70,10 @@ class Usuariocontroller {
       }
 
       await usuario.update({
-        nome: nome || usuario.nome,
+        nome_usuario: nome_usuario || usuario.nome_usuario,
         email: email || usuario.email,
         senha: senha || usuario.senha,
-        telefone: telefone || usuario.telefone,
-        telefone: telefone || usuario.nome_usuario,
+        telefone: telefone || usuario.telefone
       });
 
       res.status(200).json({
