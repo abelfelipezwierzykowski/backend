@@ -3,6 +3,7 @@ const routes = require('./routes/routesUsuario.js');
 const manipulador404 = require('./database/Error/Manipulador404.js');
 const ManipuladorDeErros = require('./midleware/ManipuladorDeErros.js');
 const cors = require('cors');
+
 // Inicializa o app
 const app = express();
 
@@ -11,6 +12,7 @@ app.use(cors({
   credentials: true,                // permite envio de cookies/autenticação se necessário
   methods:'POST'// métodos permitidos
 }));
+
 
 app.use(express.json());
 
