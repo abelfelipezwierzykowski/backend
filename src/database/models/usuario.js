@@ -1,28 +1,52 @@
 'use strict';
-const {Model,DataTypes} = require('sequelize');
-const sequelize = require('sequelize');
+const { Model, DataTypes } = require('sequelize');
+const bcrypt = require('bcryptjs'); // importa o bcrypt
+require('dotenv').config(); // para ler o SALT_ROUNDS do .env
 
 module.exports = (sequelize, DataTypes) => {
   class Usuario extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
     static associate(models) {
-      // define association here
+      // define association here (se precisar no futuro)
+    }
+
+    // Função auxiliar para comparar senhas
+    async validarSenha(senhaDigitada) {
+      return await bcrypt.compare(senhaDigitada, this.senha);
     }
   }
-  Usuario.init({
-    nome_usuario: DataTypes.STRING,
-    senha: DataTypes.STRING,
-    email: DataTypes.STRING,
-    telefone: DataTypes.STRING
 
+  Usuario.init({
+    nome_usuario:
+    DataTypes.STRING,
+    
+    senha: DataTypes.STRING,
+    email: {
+      type: DataTypes.STRING,
+      unique: true,
+      validate: { isEmail: true }
+    },
+    telefone: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'Usuario',
-    tableName: 'Usuarios', 
+    tableName: 'Usuarios',
   });
+
+  // 🔒 Hook antes de criar — faz o hash automático da senha
+  Usuario.beforeCreate(async (usuario, options) => {
+    const saltRounds = parseInt(process.env.SALT_ROUNDS, 10) || 10;
+    if (usuario.senha) {
+      usuario.senha = await bcrypt.hash(usuario.senha, saltRounds);
+    }
+  });
+
+  // 🔒 Hook antes de atualizar — caso a senha seja alterada
+  Usuario.beforeUpdate(async (usuario, options) => {
+    const saltRounds = parseInt(process.env.SALT_ROUNDS, 10) || 10;
+    if (usuario.changed('senha')) {
+      usuario.senha = await bcrypt.hash(usuario.senha, saltRounds);
+    }
+  });
+
   return Usuario;
 };

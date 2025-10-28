@@ -14,7 +14,8 @@ function ManipuladorDeErros(erro, req, res, next) {
     return new ErroValidacao(erro).enviarResposta(res);
   }
 
-  // 🔹 Erros de restrição única (chave duplicada)
+  // 🔹 Erros de restrição única (chave duplicada)clear
+  
   if (erro instanceof UniqueConstraintError) {
     return new RequisicaoIncorreta("O valor informado já está em uso.").enviarResposta(res);
   }

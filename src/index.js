@@ -19,10 +19,17 @@ app.use(express.json());
 // Rotas principais
 app.use(routes);
 
-// Middleware para rotas não encontradas (404)
-app.use(manipulador404);
+const authRoutes = require('./routes/authRoute.js');
+
+
 
 // Middleware global de tratamento de erros
 app.use(ManipuladorDeErros);
+app.use('/usuarios', routes);
+app.use('/auth', authRoutes);
+
+
+// Middleware para rotas não encontradas (404)
+app.use(manipulador404);
 
 module.exports = app;
