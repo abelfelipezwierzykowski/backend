@@ -32,7 +32,7 @@ module.exports = (sequelize, DataTypes) => {
     tableName: 'Usuarios',
   });
 
-  // 🔒 Hook antes de criar — faz o hash automático da senha
+ 
   Usuario.beforeCreate(async (usuario, options) => {
     const saltRounds = parseInt(process.env.SALT_ROUNDS, 10) || 10;
     if (usuario.senha) {
@@ -40,7 +40,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   });
 
-  // 🔒 Hook antes de atualizar — caso a senha seja alterada
+
   Usuario.beforeUpdate(async (usuario, options) => {
     const saltRounds = parseInt(process.env.SALT_ROUNDS, 10) || 10;
     if (usuario.changed('senha')) {
