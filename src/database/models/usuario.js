@@ -6,7 +6,10 @@ require('dotenv').config(); // para ler o SALT_ROUNDS do .env
 module.exports = (sequelize, DataTypes) => {
   class Usuario extends Model {
     static associate(models) {
-      // define association here (se precisar no futuro)
+      Usuario.hasOne(models.Barbeiro,{
+        foreignKey:'id_usuario',
+        as:'barbeiro'
+      })
     }
 
     // Função auxiliar para comparar senhas

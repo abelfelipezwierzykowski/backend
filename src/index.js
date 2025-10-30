@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const routesUsuario = require('./routes/routesUsuario.js');
 const authRoutes = require('./routes/authRoute.js');
+const routesBarbeiro=require('./routes/routesBarbeiro.js')
 const manipulador404 = require('./database/Error/Manipulador404.js');
 const ManipuladorDeErros = require('./midleware/ManipuladorDeErros.js');
 
@@ -21,6 +22,8 @@ app.use(express.json());
 // Rotas principais
 app.use(routesUsuario);
 app.use('/usuarios', routesUsuario);
+app.use('/barbeiros', routesBarbeiro);
+
 app.use('/auth', authRoutes);
 
 app.use(ManipuladorDeErros);
