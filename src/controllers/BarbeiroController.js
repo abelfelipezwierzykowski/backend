@@ -5,7 +5,6 @@ const Barbeiro = db.Barbeiro;
 
 class BarbeiroController {
 
-  // Listar todos os barbeiros
   static async listarBarbeiros(req, res, next) {
     try {
       const listaBarbeiros = await Barbeiro.findAll();
@@ -15,7 +14,7 @@ class BarbeiroController {
     }
   }
 
-  // Listar barbeiro pelo ID
+
   static async listarPeloId(req, res, next) {
     const { id } = req.params;
     try {
@@ -29,7 +28,7 @@ class BarbeiroController {
     }
   }
 
-  // Cadastrar novo barbeiro
+
   static async cadastrarBarbeiro(req, res, next) {
     try {
       const { id_usuario ,id_barbeiro } = req.body;
@@ -43,7 +42,7 @@ class BarbeiroController {
     }
   }
 
-  // Atualizar barbeiro
+ 
   static async atualizarBarbeiro(req, res, next) {
     try {
       const { id } = req.params;
@@ -58,7 +57,6 @@ class BarbeiroController {
     }
   }
 
-  // Deletar barbeiro
   static async deletarBarbeiro(req, res, next) {
     try {
       const { id } = req.params;

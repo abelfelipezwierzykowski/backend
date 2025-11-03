@@ -7,7 +7,7 @@ const { Op } = require('sequelize');
 
 class Usuariocontroller {
 
-  // Listar todos os usuários
+  // Listar todos 
   static async listarUsuarios(req, res, next) {
     try {
 
@@ -20,7 +20,7 @@ class Usuariocontroller {
     }
   }
 
-  // Listar usuário pelo ID
+  // Listar pelo ID
   static async listarPeloId(req, res, next) {
     const { id } = req.params;
     try {
@@ -34,7 +34,7 @@ class Usuariocontroller {
     }
   }
 
-  // Cadastrar novo usuário
+  // Cadastrar
   static async cadastrarUsuario(req, res, next) {
     try {
       const { nome_usuario, email, senha, telefone } = req.body;
@@ -113,8 +113,7 @@ class Usuariocontroller {
     }
   }
 
-  //filtro de busca
-//pesquisar sobre filtros de busca e metodos regex
+
 
 
 }
